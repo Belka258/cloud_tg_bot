@@ -119,7 +119,7 @@ class EVS_change_size(StatesGroup):
 
 
 class Change_name(StatesGroup):
-    old_name = State()
+    name = State()
     new_name = State()
 
 
@@ -440,7 +440,7 @@ async def modify_evs(message: types.Message):
             @dp.message_handler(state=Change_name.name)
             async def process_evs_name_ch(message: types.Message, state: FSMContext):
                 async with state.proxy() as EVS_ch_n:
-                    EVS_ch_n['old_name'] = message.text
+                    EVS_ch_n['name'] = message.text
                 await Change_name.name.next()
                 await message.answer('Введите новое имя EVS')
 
@@ -449,7 +449,7 @@ async def modify_evs(message: types.Message):
                 async with state.proxy() as EVS_ch_n:
                     EVS_ch_n['new_name'] = message.text
                     ch_s_evs = EVS(user_data['access_Key_Id'], user_data['secret_Access_Key'],
-                                   user_data['project_ID']).change_name_of_evs(EVS_ch_n['old_name'],
+                                   user_data['project_ID']).change_name_of_evs(EVS_ch_n['name'],
                                                                                EVS_ch_n['new_name'])
                 await state.finish()
                 await message.answer('Имя EVS изменено', reply_markup=keyboard_choose)
@@ -475,7 +475,7 @@ async def modify_evs(message: types.Message):
                 async with state.proxy() as ECS_ch_n:
                     ECS_ch_n['new_name'] = message.text
                     ch_s_ecs = ECS(user_data['access_Key_Id'], user_data['secret_Access_Key'],
-                                   user_data['project_ID']).change_name_of_ecs(ECS_ch_n['old_name'],
+                                   user_data['project_ID']).change_name_of_ecs(ECS_ch_n['name'],
                                                                                ECS_ch_n['new_name'])
                 await state.finish()
                 await message.answer('Имя ECS изменено', reply_markup=keyboard_choose)
@@ -493,7 +493,7 @@ async def modify_vpc(message: types.Message):
         @dp.message_handler(state=Change_name.name)
         async def process_vpc_name_ch(message: types.Message, state: FSMContext):
             async with state.proxy() as VPC_ch_n:
-                VPC_ch_n['old_name'] = message.text
+                VPC_ch_n['name'] = message.text
             await Change_name.name.next()
             await message.answer('Введите новое имя VPC')
 
@@ -502,7 +502,7 @@ async def modify_vpc(message: types.Message):
             async with state.proxy() as VPC_ch_n:
                 VPC_ch_n['new_name'] = message.text
                 ch_s_vpc = VPC(user_data['access_Key_Id'], user_data['secret_Access_Key'],
-                               user_data['project_ID']).change_name_of_vpc(VPC_ch_n['old_name'], VPC_ch_n['new_name'])
+                               user_data['project_ID']).change_name_of_vpc(VPC_ch_n['name'], VPC_ch_n['new_name'])
             await state.finish()
             await message.answer('Имя VPC изменено', reply_markup=keyboard_choose)
 
@@ -519,7 +519,7 @@ async def modify_vpc_sub(message: types.Message):
         @dp.message_handler(state=Change_name.name)
         async def process_vpc_sub_name_ch(message: types.Message, state: FSMContext):
             async with state.proxy() as VPC_s_ch_n:
-                VPC_s_ch_n['old_name'] = message.text
+                VPC_s_ch_n['name'] = message.text
             await Change_name.name.next()
             await message.answer('Введите новое имя VPC Subnet')
 
@@ -528,7 +528,7 @@ async def modify_vpc_sub(message: types.Message):
             async with state.proxy() as VPC_s_ch_n:
                 VPC_s_ch_n['new_name'] = message.text
                 ch_s_vpc = VPC(user_data['access_Key_Id'], user_data['secret_Access_Key'],
-                               user_data['project_ID']).change_name_of_subnet(VPC_s_ch_n['old_name'],
+                               user_data['project_ID']).change_name_of_subnet(VPC_s_ch_n['name'],
                                                                               VPC_s_ch_n['new_name'])
             await state.finish()
             await message.answer('Имя VPC Subnet изменено', reply_markup=keyboard_choose)
@@ -546,7 +546,7 @@ async def modify_evs(message: types.Message):
         @dp.message_handler(state=Change_name.name)
         async def process_ecs_name_ch(message: types.Message, state: FSMContext):
             async with state.proxy() as ECS_ch_n:
-                ECS_ch_n['old_name'] = message.text
+                ECS_ch_n['name'] = message.text
             await Change_name.name.next()
             await message.answer('Введите новое имя ECS')
 
@@ -555,7 +555,7 @@ async def modify_evs(message: types.Message):
             async with state.proxy() as ECS_ch_n:
                 ECS_ch_n['new_name'] = message.text
                 ch_s_ecs = ECS(user_data['access_Key_Id'], user_data['secret_Access_Key'],
-                               user_data['project_ID']).change_name_of_ecs(ECS_ch_n['old_name'], ECS_ch_n['new_name'])
+                               user_data['project_ID']).change_name_of_ecs(ECS_ch_n['name'], ECS_ch_n['new_name'])
             await state.finish()
             await message.answer('Имя ECS изменено', reply_markup=keyboard_choose)
 
@@ -572,7 +572,7 @@ async def modify_evs(message: types.Message):
         @dp.message_handler(state=Change_name.name)
         async def process_rds_name_ch(message: types.Message, state: FSMContext):
             async with state.proxy() as RDS_ch_n:
-                RDS_ch_n['old_name'] = message.text
+                RDS_ch_n['name'] = message.text
             await Change_name.name.next()
             await message.answer('Введите новое имя RDS')
 
@@ -581,7 +581,7 @@ async def modify_evs(message: types.Message):
             async with state.proxy() as RDS_ch_n:
                 RDS_ch_n['new_name'] = message.text
                 ch_s_rds = RDS(user_data['access_Key_Id'], user_data['secret_Access_Key'],
-                               user_data['project_ID']).change_name_of_rds(RDS_ch_n['old_name'], RDS_ch_n['new_name'])
+                               user_data['project_ID']).change_name_of_rds(RDS_ch_n['name'], RDS_ch_n['new_name'])
             await state.finish()
             await message.answer('Имя RDS изменено', reply_markup=keyboard_choose)
 

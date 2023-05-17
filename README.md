@@ -34,3 +34,7 @@ python main.py
 Пример вывода:
 
 ![start-bot](./images/start-bot.png 'Пример вывода')
+
+
+Пример работы на видео:
+https://disk.yandex.ru/i/9tDJ22QKRECJUQ
